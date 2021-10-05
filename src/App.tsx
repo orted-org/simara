@@ -1,25 +1,59 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Button from "./Components/Button";
+import { SimaraThemeContext, useSimaraToast } from "./Global/Context";
+import { DefaultSimaraThemeData } from "./Global/ThemeData";
 
 function App() {
+  const toast = useSimaraToast();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <SimaraThemeContext.Provider
+      value={{ themeData: { ...DefaultSimaraThemeData } }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Button
+          onClick={() => {
+            toast({
+              title: `This must stay for 3 seconds`,
+              duration: 3000,
+              message: "Hello",
+              intent: "danger",
+            });
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          3 Sec
+        </Button>
+        <Button
+          onClick={() => {
+            toast({
+              title: `This must stay for 6 seconds`,
+              duration: 6000,
+              message: "Hello",
+              intent: "warning",
+            });
+          }}
+        >
+          6 Sec
+        </Button>
+        <Button
+          onClick={() => {
+            toast({
+              title: `This must stay for 12 seconds`,
+              duration: 12000,
+              message: "Hello",
+              intent: "success",
+            });
+          }}
+        >
+          12 Sec
+        </Button>
+      </div>
+    </SimaraThemeContext.Provider>
   );
 }
 
