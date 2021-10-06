@@ -28,10 +28,10 @@ function RadioGroup(props: RadioGroupProps) {
   return (
     <div
       style={{
-        ...props.style,
         display: "inline-flex",
         flexDirection: "column",
         alignItems: "flex-start",
+        ...props.style,
       }}
     >
       {props.options?.map((item, index) => {

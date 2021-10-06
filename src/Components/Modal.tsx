@@ -10,7 +10,7 @@ const SBG = styled.div`
   top: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 99;
+  z-index: 96;
 `;
 const SModel = styled.div`
   background: white;
@@ -19,6 +19,7 @@ const SModel = styled.div`
   width: ${(p) => p.theme.height * 1.1 + "vw"};
   max-width: 90%;
   margin: auto;
+  z-index: 97;
   transform: translateY(50%);
   @media (max-width: 768px) {
     width: 90%;

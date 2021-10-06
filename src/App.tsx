@@ -1,57 +1,168 @@
+import { useEffect, useState } from "react";
 import Button from "./Components/Button";
+import Checkbox from "./Components/Checkbox";
+import { IconChevronRight, IconPhotograph } from "./Components/Icons";
+import Modal from "./Components/Modal";
+import RadioGroup from "./Components/RadioGroup";
+import Select from "./Components/Select";
+import Switch from "./Components/Switch";
+import TextArea from "./Components/TextArea";
+import TextField from "./Components/TextField";
 import { SimaraThemeContext, useSimaraToast } from "./Global/Context";
 import { DefaultSimaraThemeData } from "./Global/ThemeData";
 
 function App() {
+  const [terms, setTerms] = useState(false);
+  const [gender, setGender] = useState("");
+  const [noti, setNoti] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {}, []);
   const toast = useSimaraToast();
   return (
     <SimaraThemeContext.Provider
       value={{ themeData: { ...DefaultSimaraThemeData } }}
     >
+      {modal && (
+        <Modal
+          cSize="small"
+          onCloseRequest={() => {
+            setModal(false);
+          }}
+        />
+      )}
       <div
         style={{
+          minHeight: "100vh",
+          width: "100%",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
         }}
       >
-        <Button
-          onClick={() => {
-            toast({
-              title: `This must stay for 3 seconds`,
-              duration: 3000,
-              message: "Hello",
-              intent: "danger",
-            });
+        <div
+          style={{
+            width: "440px",
+            height: "fit-content",
+            border: "0.2px solid rgba(0,0,0,0)",
+            borderRadius: "6px",
+            display: "flex",
+            flexDirection: "column",
+            boxSizing: "border-box",
+            justifyContent: "flex-start",
+            alignItems: "flex-start",
+            padding: "10px",
+            maxWidth: "90%",
           }}
         >
-          3 Sec
-        </Button>
-        <Button
-          onClick={() => {
-            toast({
-              title: `This must stay for 6 seconds`,
-              duration: 6000,
-              message: "Hello",
-              intent: "warning",
-            });
-          }}
-        >
-          6 Sec
-        </Button>
-        <Button
-          onClick={() => {
-            toast({
-              title: `This must stay for 12 seconds`,
-              duration: 12000,
-              message: "Hello",
-              intent: "success",
-            });
-          }}
-        >
-          12 Sec
-        </Button>
+          <h2>Register</h2>
+
+          <TextField
+            style={{ marginTop: "10px", width: "100%" }}
+            placeholder="Full Name"
+          />
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginTop: "10px",
+            }}
+          >
+            <h5>Gender</h5>
+            <RadioGroup
+              style={{ flexDirection: "row" }}
+              radioStyles={{ marginLeft: "10px" }}
+              value={gender}
+              onChange={(e) => {
+                setGender(e);
+              }}
+              options={[
+                { value: "male", label: "Male" },
+                { value: "female", label: "Female" },
+              ]}
+            />
+          </div>
+
+          <TextArea
+            style={{ marginTop: "10px", width: "100%", resize: "none" }}
+            placeholder="Short Description"
+          />
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginTop: "10px",
+            }}
+          >
+            <Select style={{ width: "fit-content" }}>
+              <option value="male">Student</option>
+              <option value="female">Professor</option>
+            </Select>
+            <Button
+              style={{ width: "100%", marginLeft: "10px" }}
+              appearance="secondary"
+              iconBefore={IconPhotograph}
+              onClick={() => {
+                setModal(true);
+              }}
+            >
+              Add Image
+            </Button>
+          </div>
+
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginTop: "10px",
+            }}
+          >
+            <h5>Enable push notification for latest updates?</h5>
+            <Switch
+              isOn={noti}
+              onTap={() => {
+                setNoti((ps) => !ps);
+              }}
+            />
+          </div>
+          <Checkbox
+            style={{ marginTop: "60px" }}
+            isChecked={terms}
+            onTap={() => {
+              setTerms((ps) => !ps);
+            }}
+            cSize="small"
+            label="By logging in you accept our Privacy Policy and Terms of Service."
+          />
+          <Button
+            isLoading={loading}
+            iconAfter={IconChevronRight}
+            onClick={() => {
+              setLoading((ps) => !ps);
+              const timeout = setTimeout(() => {
+                clearTimeout(timeout);
+                setLoading(false);
+                toast({
+                  intent: "success",
+                  title: "Account Created",
+                  duration: 5000,
+                  message: "Your account has been successfully created.",
+                });
+              }, 3000);
+            }}
+            cSize="large"
+            style={{ width: "100%", marginTop: "10px" }}
+          >
+            Register
+          </Button>
+        </div>
       </div>
     </SimaraThemeContext.Provider>
   );

@@ -25,6 +25,9 @@ const STC = styled.div`
   margin-top: 10px;
   font-size: small;
   translate: all 0.3s;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  z-index: 98;
 `;
 function getToastTheme(p: ToastProps, baseTheme: ISimaraThemeData) {
   let intentColor = baseTheme.Colors.primary.dil0;

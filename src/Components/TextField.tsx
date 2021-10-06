@@ -121,6 +121,7 @@ function TextField(props: TextFieldProps) {
         {...props}
         style={{
           ...props.style,
+          width: "100%",
           paddingLeft: props.iconBefore ? textFieldTheme.height + "px" : "",
           paddingRight: props.iconAfter ? textFieldTheme.height + "px" : "",
         }}

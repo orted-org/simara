@@ -62,6 +62,7 @@ interface CheckboxProps {
   intent?: ComponentIntent;
   checkColor?: string;
   label?: string;
+  style?: React.CSSProperties;
 }
 function Checkbox(props: CheckboxProps) {
   const checkboxTheme = getCheckboxTheme(props, useSimara());
@@ -74,6 +75,7 @@ function Checkbox(props: CheckboxProps) {
         justifyContent: "center",
         alignItems: "center",
         cursor: "pointer",
+        ...props.style,
       }}
     >
       <SCheckbox
