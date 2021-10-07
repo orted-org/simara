@@ -6,6 +6,7 @@ interface IColor {
 }
 interface ISimaraThemeData {
   Colors: {
+    background: string;
     primary: IColor;
     success: IColor;
     danger: IColor;

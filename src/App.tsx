@@ -145,17 +145,13 @@ function App() {
             isLoading={loading}
             iconAfter={IconChevronRight}
             onClick={() => {
+              toast({
+                intent: "warning",
+                title: "Account Created",
+                duration: 5000,
+                message: "Your account has been successfully created.",
+              });
               setLoading((ps) => !ps);
-              const timeout = setTimeout(() => {
-                clearTimeout(timeout);
-                setLoading(false);
-                toast({
-                  intent: "success",
-                  title: "Account Created",
-                  duration: 5000,
-                  message: "Your account has been successfully created.",
-                });
-              }, 3000);
             }}
             cSize="large"
             style={{ width: "100%", marginTop: "10px" }}
