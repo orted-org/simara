@@ -71,15 +71,21 @@ interface ToastProps {
 function Toast(props: ToastProps) {
   const simara = useSimara();
   const toastTheme = getToastTheme(props, useSimara());
+  let shouldClose = true;
   useEffect(() => {
     const duration = props.duration || simara.AlertDuration;
     const timeout = setTimeout(() => {
       clearTimeout(timeout);
-      props.onClose && props.onClose();
+      if (shouldClose) props.onClose && props.onClose();
     }, duration);
-  }, [props, props.duration, simara.AlertDuration]);
+  }, [props, props.duration, shouldClose, simara.AlertDuration]);
   return (
-    <STC theme={toastTheme}>
+    <STC
+      theme={toastTheme}
+      onMouseEnter={() => {
+        shouldClose = false;
+      }}
+    >
       <IconWrapper
         color={toastTheme.intentColor}
         cSize="large"
