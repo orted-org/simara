@@ -1,9 +1,9 @@
 import { createContext, useContext } from "react";
 import { ISimaraContext, ISimaraToast } from "./Interface";
-import { DefaultSimaraThemeData } from "./ThemeData";
+import { SimaraLightTheme } from "./ThemeData";
 
 export const SimaraThemeContext = createContext<ISimaraContext>({
-  themeData: DefaultSimaraThemeData,
+  themeData: SimaraLightTheme,
 });
 export const useSimara = () => useContext(SimaraThemeContext).themeData;
 

@@ -22,7 +22,7 @@ const SSwitchThumb = styled.div`
   width: ${(p) => getNearestEven(p.theme.height * 0.6) + "px"};
   border-radius: ${(p) => p.theme.height + "px"};
   transition: all 0.3s;
-  background: white;
+  background: ${(p) => p.theme.thumbBackgroundColor};
   transition-timing-function: ease-in-out;
 `;
 
@@ -30,6 +30,7 @@ function getSwitchTheme(p: SwitchProps, baseTheme: ISimaraThemeData) {
   let height = baseTheme.MediumHeight / 2;
   let trackColor = baseTheme.Colors.primary.dil0;
   let borderColor = baseTheme.Colors.primary.dil60;
+  let thumbBackgroundColor = "white";
   switch (p.cSize) {
     case "small":
       height = baseTheme.SmallHeight / 2;
@@ -41,6 +42,7 @@ function getSwitchTheme(p: SwitchProps, baseTheme: ISimaraThemeData) {
   if (!p.isOn) {
     trackColor = baseTheme.Colors.grey.dil90;
     borderColor = baseTheme.Colors.grey.dil60;
+    thumbBackgroundColor = baseTheme.Colors.text.dil60;
   } else {
     switch (p.intent) {
       case "success":
@@ -57,6 +59,7 @@ function getSwitchTheme(p: SwitchProps, baseTheme: ISimaraThemeData) {
     height,
     trackColor,
     borderColor,
+    thumbBackgroundColor,
   };
 }
 interface SwitchProps {

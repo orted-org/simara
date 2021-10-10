@@ -10,11 +10,12 @@ const SSelect = styled.select`
   border-radius: ${(p) => p.theme.borderRadius + "px"};
   outline: none;
   font-weight: 600;
-  background: none;
-  border: 1.5px solid ${(p) => p.theme.inActiveBorderColor};
+  background: ${(p) => p.theme.backgroundColor};
+  color: inherit;
+  border: 1px solid ${(p) => p.theme.inActiveBorderColor};
   &:focus {
-    border: 1.5px solid ${(p) => p.theme.activeBorderColor};
-    box-shadow: 0 0 0 2px ${(p) => p.theme.activeBoxShadowColor};
+    border: 1px solid ${(p) => p.theme.activeBorderColor};
+    box-shadow: 0 0 0 3px ${(p) => p.theme.activeBoxShadowColor};
   }
 `;
 
@@ -35,7 +36,8 @@ function getSelectTheme(p: SelectProps, baseTheme: ISimaraThemeData) {
     borderRadius: baseTheme.BorderRadius,
     inActiveBorderColor: baseTheme.Colors.grey.dil60,
     activeBorderColor: baseTheme.Colors.primary.dil0,
-    activeBoxShadowColor: baseTheme.Colors.primary.dil60,
+    backgroundColor: baseTheme.Colors.grey.dil90,
+    activeBoxShadowColor: baseTheme.Colors.primary.dil90,
   };
 }
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {

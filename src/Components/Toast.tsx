@@ -17,7 +17,7 @@ const STC = styled.div`
   width: 400px;
   height: fit-content;
   border-radius: ${(p) => p.theme.borderRadius + "px"};
-  border: 1.5px solid ${(p) => p.theme.intentColor};
+  border: 1px solid ${(p) => p.theme.intentColor};
   background: ${(p) => p.theme.background};
   overflow: hidden;
   padding: 10px;
@@ -25,27 +25,27 @@ const STC = styled.div`
   margin-top: 10px;
   font-size: small;
   translate: all 0.3s;
-  box-shadow: 0 0 0 2px ${(p) => p.theme.boxShadowColor};
+  box-shadow: 0 0 0 3px ${(p) => p.theme.boxShadowColor};
   z-index: 98;
 `;
 function getToastTheme(p: ToastProps, baseTheme: ISimaraThemeData) {
   let intentColor = baseTheme.Colors.primary.dil0;
-  let boxShadowColor = baseTheme.Colors.primary.dil60;
+  let boxShadowColor = baseTheme.Colors.primary.dil90;
   let icon = IconInformationCircle;
   switch (p.intent) {
     case "danger":
       intentColor = baseTheme.Colors.danger.dil0;
-      boxShadowColor = baseTheme.Colors.danger.dil60;
+      boxShadowColor = baseTheme.Colors.danger.dil90;
       icon = IconExclamationCircle;
       break;
     case "success":
       intentColor = baseTheme.Colors.success.dil0;
-      boxShadowColor = baseTheme.Colors.success.dil60;
+      boxShadowColor = baseTheme.Colors.success.dil90;
       icon = IconCheck;
       break;
     case "warning":
       intentColor = baseTheme.Colors.warning.dil0;
-      boxShadowColor = baseTheme.Colors.warning.dil60;
+      boxShadowColor = baseTheme.Colors.warning.dil90;
       icon = IconExclamation;
       break;
   }
@@ -113,7 +113,7 @@ function Toast(props: ToastProps) {
           style={{
             padding: "0",
             margin: "0",
-            color: useSimara().Colors.grey.dil30,
+            color: useSimara().Colors.text.dil60,
           }}
         >
           {props.message}

@@ -13,7 +13,6 @@ const SRadioTrack = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid ${(p) => p.theme.borderColor};
   cursor: pointer;
 `;
 
@@ -28,7 +27,6 @@ const SRadioThumb = styled.div`
 function getRadioTheme(p: RadioProps, baseTheme: ISimaraThemeData) {
   let height = baseTheme.MediumHeight / 2;
   let trackColor = baseTheme.Colors.primary.dil0;
-  let borderColor = baseTheme.Colors.primary.dil60;
   switch (p.cSize) {
     case "small":
       height = baseTheme.SmallHeight / 2;
@@ -38,24 +36,20 @@ function getRadioTheme(p: RadioProps, baseTheme: ISimaraThemeData) {
       break;
   }
   if (!p.isOn) {
-    trackColor = baseTheme.Colors.grey.dil90;
-    borderColor = baseTheme.Colors.grey.dil60;
+    trackColor = baseTheme.Colors.grey.dil60;
   } else {
     switch (p.intent) {
       case "success":
         trackColor = baseTheme.Colors.success.dil0;
-        borderColor = baseTheme.Colors.success.dil60;
         break;
       case "danger":
         trackColor = baseTheme.Colors.danger.dil0;
-        borderColor = baseTheme.Colors.danger.dil60;
         break;
     }
   }
   return {
     height,
     trackColor,
-    borderColor,
   };
 }
 interface RadioProps {

@@ -22,15 +22,17 @@ const STextArea = styled.textarea`
   width: ${(p) => p.theme.height * 3 + "px"};
   outline: none;
   border-radius: ${(p) => p.theme.borderRadius + "px"};
-  border: 1.5px solid ${(p) => p.theme.inActiveBorderColor};
+  border: 1px solid ${(p) => p.theme.inActiveBorderColor};
   font-size: ${(p) => p.theme.height / (3 * 3) + "px"};
   padding: ${(p) => (p.theme.height * 0.2) / 3 + "px"};
   transition: all 0.3s;
   font-weight: 400;
+  background: ${(p) => p.theme.backgroundColor};
+  color: inherit;
   -webkit-appearance: none;
   &:focus {
-    border: 1.5px solid ${(p) => p.theme.activeBorderColor};
-    box-shadow: 0 0 0 2px ${(p) => p.theme.activeBoxShadowColor};
+    border: 1px solid ${(p) => p.theme.activeBorderColor};
+    box-shadow: 0 0 0 3px ${(p) => p.theme.activeBoxShadowColor};
   }
 `;
 
@@ -49,6 +51,7 @@ function getTextAreaTheme(p: TextAreaProps, baseTheme: ISimaraThemeData) {
   return {
     height: baseTheme.MediumHeight * 3,
     borderRadius: baseTheme.BorderRadius,
+    backgroundColor: baseTheme.Colors.grey.dil90,
     inActiveBorderColor: p.isInvalid
       ? baseTheme.Colors.danger.dil30
       : baseTheme.Colors.grey.dil60,
@@ -57,7 +60,7 @@ function getTextAreaTheme(p: TextAreaProps, baseTheme: ISimaraThemeData) {
       : baseTheme.Colors.primary.dil0,
     activeBoxShadowColor: p.isInvalid
       ? baseTheme.Colors.danger.dil60
-      : baseTheme.Colors.primary.dil60,
+      : baseTheme.Colors.primary.dil90,
   };
 }
 

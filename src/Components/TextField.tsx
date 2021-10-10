@@ -19,19 +19,22 @@ const STextFieldBox = styled.div`
 const STextField = styled.input`
   margin: 0;
   padding: 0;
+  width: 100%;
   height: ${(p) => p.theme.height + "px"};
   outline: none;
   border-radius: ${(p) => p.theme.borderRadius + "px"};
   box-sizing: border-box;
-  border: 1.5px solid ${(p) => p.theme.inActiveBorderColor};
+  border: 1px solid ${(p) => p.theme.inActiveBorderColor};
   font-size: ${(p) => p.theme.height / 3 + "px"};
   padding: 0px ${(p) => p.theme.height * 0.2 + "px"};
   transition: all 0.3s;
   font-weight: 400;
+  background: ${(p) => p.theme.backgroundColor};
+  color: inherit;
   -webkit-appearance: none;
   &:focus {
-    border: 1.5px solid ${(p) => p.theme.activeBorderColor};
-    box-shadow: 0 0 0 2px ${(p) => p.theme.activeBoxShadowColor};
+    border: 1px solid ${(p) => p.theme.activeBorderColor};
+    box-shadow: 0 0 0 3px ${(p) => p.theme.activeBoxShadowColor};
   }
 `;
 
@@ -59,6 +62,8 @@ function getTextFieldTheme(p: TextFieldProps, baseTheme: ISimaraThemeData) {
   return {
     height,
     borderRadius: baseTheme.BorderRadius,
+    iconColor: baseTheme.Colors.text.dil60,
+    backgroundColor: baseTheme.Colors.grey.dil90,
     inActiveBorderColor: p.isInvalid
       ? baseTheme.Colors.danger.dil30
       : baseTheme.Colors.grey.dil60,
@@ -66,17 +71,19 @@ function getTextFieldTheme(p: TextFieldProps, baseTheme: ISimaraThemeData) {
       ? baseTheme.Colors.danger.dil0
       : baseTheme.Colors.primary.dil0,
     activeBoxShadowColor: p.isInvalid
-      ? baseTheme.Colors.danger.dil60
-      : baseTheme.Colors.primary.dil60,
+      ? baseTheme.Colors.danger.dil90
+      : baseTheme.Colors.primary.dil90,
   };
 }
 
 interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   isInvalid?: boolean;
   showMaxCounter?: boolean;
+  iconColor?: string;
   iconBefore?: JSX.Element;
   iconAfter?: JSX.Element;
   cSize?: ComponentSize;
+  containerStyle?: React.CSSProperties;
 }
 function TextField(props: TextFieldProps) {
   const textFieldTheme = getTextFieldTheme(props, useSimara());
@@ -84,9 +91,7 @@ function TextField(props: TextFieldProps) {
     props.value?.toString.length || 0
   );
   return (
-    <STextFieldBox
-      style={{ width: props.style?.width, height: props.style?.height }}
-    >
+    <STextFieldBox style={props.containerStyle}>
       {props.iconBefore && (
         <IconWrapper
           style={{
@@ -94,7 +99,7 @@ function TextField(props: TextFieldProps) {
             left: textFieldTheme.height / 3,
           }}
           cSize={props.cSize}
-          color={textFieldTheme.activeBorderColor}
+          color={props.iconColor || textFieldTheme.iconColor}
         >
           {props.iconBefore}
         </IconWrapper>
@@ -106,7 +111,7 @@ function TextField(props: TextFieldProps) {
             right: textFieldTheme.height / 3,
           }}
           cSize={props.cSize}
-          color={textFieldTheme.activeBorderColor}
+          color={props.iconColor || textFieldTheme.iconColor}
         >
           {props.iconAfter}
         </IconWrapper>
@@ -121,7 +126,6 @@ function TextField(props: TextFieldProps) {
         {...props}
         style={{
           ...props.style,
-          width: "100%",
           paddingLeft: props.iconBefore ? textFieldTheme.height + "px" : "",
           paddingRight: props.iconAfter ? textFieldTheme.height + "px" : "",
         }}

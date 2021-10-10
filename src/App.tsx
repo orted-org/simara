@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 import Button from "./Components/Button";
 import Checkbox from "./Components/Checkbox";
-import { IconChevronRight, IconPhotograph } from "./Components/Icons";
+import { IconChevronRight, IconMail, IconPhotograph } from "./Components/Icons";
 import Modal from "./Components/Modal";
 import RadioGroup from "./Components/RadioGroup";
 import Select from "./Components/Select";
 import Switch from "./Components/Switch";
 import TextArea from "./Components/TextArea";
 import TextField from "./Components/TextField";
-import { SimaraThemeContext, useSimaraToast } from "./Global/Context";
-import { DefaultSimaraThemeData } from "./Global/ThemeData";
+import { useSimara, useSimaraToast } from "./Global/Context";
 
 function App() {
   const [terms, setTerms] = useState(false);
@@ -17,12 +16,11 @@ function App() {
   const [noti, setNoti] = useState(false);
   const [modal, setModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const theme = useSimara();
   useEffect(() => {}, []);
   const toast = useSimaraToast();
   return (
-    <SimaraThemeContext.Provider
-      value={{ themeData: { ...DefaultSimaraThemeData } }}
-    >
+    <>
       {modal && (
         <Modal
           cSize="small"
@@ -39,13 +37,14 @@ function App() {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
+          background: theme.Colors.background,
+          color: theme.Colors.text.dil0,
         }}
       >
         <div
           style={{
             width: "440px",
             height: "fit-content",
-            border: "0.2px solid rgba(0,0,0,0)",
             borderRadius: "6px",
             display: "flex",
             flexDirection: "column",
@@ -59,8 +58,9 @@ function App() {
           <h2>Register</h2>
 
           <TextField
-            style={{ marginTop: "10px", width: "100%" }}
+            containerStyle={{ width: "100%", marginTop: "10px" }}
             placeholder="Full Name"
+            iconBefore={IconMail}
           />
           <div
             style={{
@@ -106,6 +106,7 @@ function App() {
             <Button
               style={{ width: "100%", marginLeft: "10px" }}
               appearance="secondary"
+              intent="danger"
               iconBefore={IconPhotograph}
               onClick={() => {
                 setModal(true);
@@ -146,7 +147,7 @@ function App() {
             iconAfter={IconChevronRight}
             onClick={() => {
               toast({
-                intent: "warning",
+                intent: "success",
                 title: "Account Created",
                 duration: 5000,
                 message: "Your account has been successfully created.",
@@ -160,7 +161,7 @@ function App() {
           </Button>
         </div>
       </div>
-    </SimaraThemeContext.Provider>
+    </>
   );
 }
 

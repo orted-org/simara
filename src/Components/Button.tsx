@@ -80,7 +80,7 @@ function getButtonTheme(p: ButtonProps, baseTheme: ISimaraThemeData): any {
   switch (p.appearance) {
     case "secondary":
       internalColor = theme.dil0;
-      backgroundColor = theme.dil90;
+      backgroundColor = "none";
       borderColor = theme.dil60;
       activeBrightness = 90;
       borderWidth = 1;
