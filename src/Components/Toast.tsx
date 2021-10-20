@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import styled from "styled-components";
 import { useSimara } from "../Global/Context";
 import { ISimaraThemeData } from "../Global/Interface";
@@ -70,7 +70,11 @@ interface ToastProps {
 }
 function Toast(props: ToastProps) {
   const simara = useSimara();
-  const toastTheme = getToastTheme(props, useSimara());
+  const toastTheme = useMemo(
+    () => getToastTheme(props, simara),
+    [props, simara]
+  );
+
   let shouldClose = true;
   useEffect(() => {
     const duration = props.duration || simara.AlertDuration;
@@ -113,7 +117,7 @@ function Toast(props: ToastProps) {
           style={{
             padding: "0",
             margin: "0",
-            color: useSimara().Colors.text.dil60,
+            color: simara.Colors.text.dil60,
           }}
         >
           {props.message}

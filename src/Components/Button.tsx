@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes } from "react";
+import React, { ButtonHTMLAttributes, useMemo } from "react";
 import styled from "styled-components";
 import { useSimara } from "../Global/Context";
 import { ISimaraThemeData } from "../Global/Interface";
@@ -101,7 +101,10 @@ function getButtonTheme(p: ButtonProps, baseTheme: ISimaraThemeData): any {
 
 export default function Button(props: ButtonProps) {
   const simaraTheme = useSimara();
-  const buttonTheme = getButtonTheme(props, simaraTheme);
+  const buttonTheme = useMemo(
+    () => getButtonTheme(props, simaraTheme),
+    [props, simaraTheme]
+  );
 
   return (
     <SButton

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { ComponentSize } from "../Global/Type";
 const SSpinner = styled.div`
@@ -35,13 +35,13 @@ function getSpinnerTheme(p: SpinnerProps): any {
   return { size, color };
 }
 function Spinner(props: SpinnerProps) {
-  const [glow, SetGlow] = useState(0);
+  const [glow, setGlow] = useState(0);
   useEffect(() => {
     setInterval(() => {
-      SetGlow((prevState) => (prevState + 1) % 3);
+      setGlow((prevState) => (prevState + 1) % 3);
     }, 1000);
   }, []);
-  const spinnerTheme = getSpinnerTheme(props);
+  const spinnerTheme = useMemo(() => getSpinnerTheme(props), [props]);
   return (
     <SSpinner>
       <SDots style={{ opacity: glow === 0 ? 1 : 0.3 }} theme={spinnerTheme} />

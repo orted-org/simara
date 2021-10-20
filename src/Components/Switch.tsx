@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 import { useSimara } from "../Global/Context";
 import { ISimaraThemeData } from "../Global/Interface";
@@ -71,7 +71,12 @@ interface SwitchProps {
   trackStyle?: React.CSSProperties;
 }
 function Switch(props: SwitchProps) {
-  const switchTheme = getSwitchTheme(props, useSimara());
+  const simaraTheme = useSimara();
+  const switchTheme = useMemo(
+    () => getSwitchTheme(props, simaraTheme),
+    [props, simaraTheme]
+  );
+
   return (
     <SSwitchTrack
       onClick={props.onTap}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 import { useSimara } from "../Global/Context";
 import { ISimaraThemeData } from "../Global/Interface";
@@ -50,7 +50,11 @@ interface ModalProps {
   onCloseRequest?: () => void;
 }
 function Modal(props: ModalProps) {
-  const modalTheme = getModalTheme(props, useSimara());
+  const simaraTheme = useSimara();
+  const modalTheme = useMemo(
+    () => getModalTheme(props, simaraTheme),
+    [props, simaraTheme]
+  );
 
   return (
     <SBG
