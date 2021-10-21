@@ -1,4 +1,4 @@
-import { TextareaHTMLAttributes, useState } from "react";
+import { TextareaHTMLAttributes, useState, useMemo } from "react";
 import styled from "styled-components";
 import { useSimara } from "../Global/Context";
 import { ISimaraThemeData } from "../Global/Interface";
@@ -69,7 +69,12 @@ interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   showMaxCounter?: boolean;
 }
 function TextArea(props: TextAreaProps) {
-  const textAreaTheme = getTextAreaTheme(props, useSimara());
+  const simaraTheme = useSimara();
+  const textAreaTheme = useMemo(
+    () => getTextAreaTheme(props, simaraTheme),
+    [props, simaraTheme]
+  );
+
   const [textLength, setTextLength] = useState(
     props.value?.toString.length || 0
   );

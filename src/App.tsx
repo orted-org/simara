@@ -106,7 +106,7 @@ function App() {
             <Button
               style={{ width: "100%", marginLeft: "10px" }}
               appearance="secondary"
-              intent="danger"
+              intent="success"
               iconBefore={IconPhotograph}
               onClick={() => {
                 setModal(true);
@@ -143,16 +143,18 @@ function App() {
             label="By logging in you accept our Privacy Policy and Terms of Service."
           />
           <Button
+            intent="normal"
+            appearance="primary"
             isLoading={loading}
             iconAfter={IconChevronRight}
             onClick={() => {
-              toast({
-                intent: "success",
-                title: "Account Created",
-                duration: 5000,
-                message: "Your account has been successfully created.",
-              });
-              setLoading((ps) => !ps);
+              // toast({
+              //   intent: "success",
+              //   title: "Account Created",
+              //   duration: 5000,
+              //   message: "Your account has been successfully created.",
+              // });
+              // setLoading((ps) => !ps);
             }}
             cSize="large"
             style={{ width: "100%", marginTop: "10px" }}

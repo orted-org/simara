@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, useState } from "react";
+import { InputHTMLAttributes, useMemo, useState } from "react";
 import styled from "styled-components";
 import { useSimara } from "../Global/Context";
 import { ISimaraThemeData } from "../Global/Interface";
@@ -86,7 +86,12 @@ interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   containerStyle?: React.CSSProperties;
 }
 function TextField(props: TextFieldProps) {
-  const textFieldTheme = getTextFieldTheme(props, useSimara());
+  const simaraTheme = useSimara();
+  const textFieldTheme = useMemo(
+    () => getTextFieldTheme(props, simaraTheme),
+    [props, simaraTheme]
+  );
+
   const [textLength, setTextLength] = useState(
     props.value?.toString.length || 0
   );

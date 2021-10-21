@@ -7,7 +7,7 @@ import { SimaraDarkTheme, SimaraLightTheme } from "./Global/ThemeData";
 
 ReactDOM.render(
   <React.StrictMode>
-    <SimaraThemeContext.Provider value={{ themeData: SimaraLightTheme }}>
+    <SimaraThemeContext.Provider value={{ themeData: SimaraDarkTheme }}>
       <ToastManager>
         <App />
       </ToastManager>

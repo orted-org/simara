@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 import { useSimara } from "../Global/Context";
 import { ISimaraThemeData } from "../Global/Interface";
@@ -65,7 +65,12 @@ interface CheckboxProps {
   style?: React.CSSProperties;
 }
 function Checkbox(props: CheckboxProps) {
-  const checkboxTheme = getCheckboxTheme(props, useSimara());
+  const simaraTheme = useSimara();
+  const checkboxTheme = useMemo(
+    () => getCheckboxTheme(props, simaraTheme),
+    [props, simaraTheme]
+  );
+
   return (
     <label
       onClick={props.onTap}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 import { useSimara } from "../Global/Context";
 import { ISimaraThemeData } from "../Global/Interface";
@@ -61,7 +61,12 @@ interface RadioProps {
   label?: string;
 }
 function Radio(props: RadioProps) {
-  const radioTheme = getRadioTheme(props, useSimara());
+  const simaraTheme = useSimara();
+  const radioTheme = useMemo(
+    () => getRadioTheme(props, simaraTheme),
+    [props, simaraTheme]
+  );
+
   return (
     <label
       onClick={props.onTap}

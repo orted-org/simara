@@ -1,4 +1,4 @@
-import React, { SelectHTMLAttributes } from "react";
+import React, { SelectHTMLAttributes, useMemo } from "react";
 import styled from "styled-components";
 import { useSimara } from "../Global/Context";
 import { ISimaraThemeData } from "../Global/Interface";
@@ -45,7 +45,12 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   cSize?: ComponentSize;
 }
 function Select(props: SelectProps) {
-  const selectTheme = getSelectTheme(props, useSimara());
+  const simaraTheme = useSimara();
+  const selectTheme = useMemo(
+    () => getSelectTheme(props, simaraTheme),
+    [props, simaraTheme]
+  );
+
   return (
     <SSelect theme={selectTheme} {...props}>
       {props.children}

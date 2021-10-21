@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes } from "react";
+import React, { ButtonHTMLAttributes, useMemo } from "react";
 import styled from "styled-components";
 import { useSimara } from "../Global/Context";
 import { ISimaraThemeData } from "../Global/Interface";
@@ -18,8 +18,7 @@ const SButton = styled.button`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  border: ${(p) => p.theme.borderWidth + "px"} solid
-    ${(p) => p.theme.borderColor};
+  border: 1px solid ${(p) => p.theme.borderColor};
   outline: none;
 
   transition: all 0.3s;
@@ -54,7 +53,6 @@ function getButtonTheme(p: ButtonProps, baseTheme: ISimaraThemeData): any {
   let internalColor = "white";
   let height = baseTheme.MediumHeight;
   let activeBrightness = 80;
-  let borderWidth = 2;
   switch (p.cSize) {
     case "small":
       height = baseTheme.SmallHeight;
@@ -80,17 +78,15 @@ function getButtonTheme(p: ButtonProps, baseTheme: ISimaraThemeData): any {
   switch (p.appearance) {
     case "secondary":
       internalColor = theme.dil0;
-      backgroundColor = "none";
+      backgroundColor = "transparent";
       borderColor = theme.dil60;
       activeBrightness = 90;
-      borderWidth = 1;
       break;
     case "minimal":
       internalColor = theme.dil0;
       backgroundColor = "transparent";
       borderColor = backgroundColor;
       activeBrightness = 50;
-      borderWidth = 0;
       break;
   }
   return {
@@ -100,13 +96,15 @@ function getButtonTheme(p: ButtonProps, baseTheme: ISimaraThemeData): any {
     height,
     borderRadius: baseTheme.BorderRadius,
     activeBrightness,
-    borderWidth,
   };
 }
 
 export default function Button(props: ButtonProps) {
   const simaraTheme = useSimara();
-  const buttonTheme = getButtonTheme(props, simaraTheme);
+  const buttonTheme = useMemo(
+    () => getButtonTheme(props, simaraTheme),
+    [props, simaraTheme]
+  );
 
   return (
     <SButton
