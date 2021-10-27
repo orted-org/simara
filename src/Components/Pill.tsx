@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 import { useSimara } from "../Global/Context";
 import { ISimaraThemeData } from "../Global/Interface";
@@ -30,7 +30,7 @@ function getBadgeTheme(p: BadgeProps, baseTheme: ISimaraThemeData) {
     baseTheme.Colors.background === "#ffffff" ? "100%" : "200%";
   const filter = "brightness(" + filterFactor + ")";
   let fontSize = baseTheme.MediumHeight / 3;
-  let theme = baseTheme.Colors.grey;
+  let theme = baseTheme.Colors.primary;
 
   switch (p.cSize) {
     case "small":

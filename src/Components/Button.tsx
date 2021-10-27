@@ -10,7 +10,8 @@ const SButton = styled.button`
   color: ${(p) => p.theme.internalColor};
   height: ${(p) => p.theme.height + "px"};
   min-width: ${(p) => p.theme.height + 1.5 + "px"};
-  padding: 0px ${(p) => p.theme.height * 0.5 + "px"};
+  padding: ${(p) =>
+    p.theme.height * 0.05 + "px " + p.theme.height * 0.2 + "px"};
   font-size: ${(p) => p.theme.height / 3 + "px"};
   font-weight: 500;
   border-radius: ${(p) => p.theme.borderRadius + "px"};
@@ -20,17 +21,16 @@ const SButton = styled.button`
   cursor: pointer;
   border: 1px solid ${(p) => p.theme.borderColor};
   outline: none;
-
-  transition: all 0.3s;
+  transition: all 0.1s;
   &:hover {
-    filter: brightness(95%);
+    filter: brightness(120%);
   }
   &:disabled {
     filter: brightness(100%);
     cursor: not-allowed;
   }
   &:active {
-    filter: ${(p) => `brightness(${p.theme.activeBrightness}%)`};
+    filter: brightness(60%);
   }
 `;
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -43,6 +43,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean;
   children?: React.ReactNode;
   isIconButton?: boolean;
+  isShrunken?: boolean;
 }
 
 function getButtonTheme(p: ButtonProps, baseTheme: ISimaraThemeData): any {
@@ -52,7 +53,6 @@ function getButtonTheme(p: ButtonProps, baseTheme: ISimaraThemeData): any {
   let borderColor = theme.dil60;
   let internalColor = "white";
   let height = baseTheme.MediumHeight;
-  let activeBrightness = 80;
   switch (p.cSize) {
     case "small":
       height = baseTheme.SmallHeight;
@@ -80,13 +80,11 @@ function getButtonTheme(p: ButtonProps, baseTheme: ISimaraThemeData): any {
       internalColor = theme.dil0;
       backgroundColor = "transparent";
       borderColor = theme.dil60;
-      activeBrightness = 90;
       break;
     case "minimal":
       internalColor = theme.dil0;
       backgroundColor = "transparent";
       borderColor = backgroundColor;
-      activeBrightness = 50;
       break;
   }
   return {
@@ -95,7 +93,6 @@ function getButtonTheme(p: ButtonProps, baseTheme: ISimaraThemeData): any {
     internalColor,
     height,
     borderRadius: baseTheme.BorderRadius,
-    activeBrightness,
   };
 }
 
@@ -112,7 +109,12 @@ export default function Button(props: ButtonProps) {
       disabled={props.isDisabled}
       onClick={props.onClick}
       {...props}
-      style={{ ...props.style, padding: props.isIconButton ? 0 : "" }}
+      style={{
+        padding: props.isIconButton ? 0 : "",
+        height: props.isShrunken ? "fit-content" : "",
+        width: props.isShrunken ? "fit-content" : "",
+        ...props.style,
+      }}
     >
       {props.isLoading ? (
         <Spinner color={buttonTheme.internalColor} cSize={props.cSize} />

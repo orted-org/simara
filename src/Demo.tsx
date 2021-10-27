@@ -1,20 +1,16 @@
 import { useEffect, useState } from "react";
-import Badge from "../Components/Badge";
-import Button from "../Components/Button";
-import Checkbox from "../Components/Checkbox";
-import {
-  IconChevronRight,
-  IconMail,
-  IconPhotograph,
-} from "../Components/Icons";
-import Modal from "../Components/Modal";
-import Pill from "../Components/Pill";
-import RadioGroup from "../Components/RadioGroup";
-import Select from "../Components/Select";
-import Switch from "../Components/Switch";
-import TextArea from "../Components/TextArea";
-import TextField from "../Components/TextField";
-import { useSimara, useSimaraToast } from "../Global/Context";
+import Badge from "./Components/Badge";
+import Button from "./Components/Button";
+import Checkbox from "./Components/Checkbox";
+import { IconChevronRight, IconMail, IconPhotograph } from "./Components/Icons";
+import Modal from "./Components/Modal";
+import Pill from "./Components/Pill";
+import RadioGroup from "./Components/RadioGroup";
+import Select from "./Components/Select";
+import Switch from "./Components/Switch";
+import TextArea from "./Components/TextArea";
+import TextField from "./Components/TextField";
+import { useSimara, useSimaraToast } from "./Global/Context";
 
 function Demo() {
   const [terms, setTerms] = useState(false);
@@ -61,7 +57,9 @@ function Demo() {
             maxWidth: "90%",
           }}
         >
-          <h2>Register <Pill>10</Pill> <Badge>10</Badge> </h2>
+          <h2>
+            Register <Pill>10</Pill> <Badge>10</Badge>{" "}
+          </h2>
 
           <TextField
             containerStyle={{ width: "100%", marginTop: "10px" }}
@@ -110,9 +108,13 @@ function Demo() {
               <option value="female">Professor</option>
             </Select>
             <Button
-              style={{ width: "100%", marginLeft: "10px" }}
-              appearance="secondary"
-              intent="success"
+              style={{
+                marginLeft: "10px",
+              }}
+              cSize="small"
+              isShrunken
+              appearance="primary"
+              intent="danger"
               iconBefore={IconPhotograph}
               onClick={() => {
                 setModal(true);
