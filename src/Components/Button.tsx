@@ -20,17 +20,16 @@ const SButton = styled.button`
   cursor: pointer;
   border: 1px solid ${(p) => p.theme.borderColor};
   outline: none;
-
-  transition: all 0.3s;
+  transition: all 0.1s;
   &:hover {
-    filter: brightness(95%);
+    filter: brightness(120%);
   }
   &:disabled {
     filter: brightness(100%);
     cursor: not-allowed;
   }
   &:active {
-    filter: ${(p) => `brightness(${p.theme.activeBrightness}%)`};
+    filter: brightness(60%);
   }
 `;
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -52,7 +51,6 @@ function getButtonTheme(p: ButtonProps, baseTheme: ISimaraThemeData): any {
   let borderColor = theme.dil60;
   let internalColor = "white";
   let height = baseTheme.MediumHeight;
-  let activeBrightness = 80;
   switch (p.cSize) {
     case "small":
       height = baseTheme.SmallHeight;
@@ -80,13 +78,11 @@ function getButtonTheme(p: ButtonProps, baseTheme: ISimaraThemeData): any {
       internalColor = theme.dil0;
       backgroundColor = "transparent";
       borderColor = theme.dil60;
-      activeBrightness = 90;
       break;
     case "minimal":
       internalColor = theme.dil0;
       backgroundColor = "transparent";
       borderColor = backgroundColor;
-      activeBrightness = 50;
       break;
   }
   return {
@@ -95,7 +91,6 @@ function getButtonTheme(p: ButtonProps, baseTheme: ISimaraThemeData): any {
     internalColor,
     height,
     borderRadius: baseTheme.BorderRadius,
-    activeBrightness,
   };
 }
 

@@ -1,7 +1,4 @@
-import Badge from "./Components/Badge";
-import Pill from "./Components/Pill";
-import Demo from "./Utils/Demo";
-
+import Demo from "./Demo";
 
 function App() {
   return (
