@@ -12,6 +12,7 @@ const SSelect = styled.select`
   font-weight: 600;
   background: ${(p) => p.theme.backgroundColor};
   color: inherit;
+  font-size: ${(p) => p.theme.height / 3 + "px"};
   border: 1px solid ${(p) => p.theme.inActiveBorderColor};
   &:focus {
     border: 1px solid ${(p) => p.theme.activeBorderColor};
