@@ -4,7 +4,6 @@ import Button from "./Components/Button";
 import Checkbox from "./Components/Checkbox";
 import { IconChevronRight, IconMail, IconPhotograph } from "./Components/Icons";
 import Modal from "./Components/Modal";
-import Pill from "./Components/Pill";
 import RadioGroup from "./Components/RadioGroup";
 import Select from "./Components/Select";
 import Switch from "./Components/Switch";
@@ -58,7 +57,7 @@ function Demo() {
           }}
         >
           <h2>
-            Register <Pill>10</Pill> <Badge>10</Badge>{" "}
+            Register <Badge isPill>10</Badge>{" "}
           </h2>
 
           <TextField
@@ -111,7 +110,7 @@ function Demo() {
               style={{
                 marginLeft: "10px",
               }}
-              cSize="small"
+              cSize="medium"
               isShrunken
               appearance="primary"
               intent="danger"

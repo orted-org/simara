@@ -8,7 +8,7 @@ const SBadge = styled.div`
   width: fit-content;
   height: fit-content;
   font-size: ${(p) => p.theme.fontSize + "px"};
-  border-radius: ${(p) => p.theme.fontSize / 4 + "px"};
+  border-radius: ${(p) => p.theme.borderRadius + "px"};
   background: ${(p) => p.theme.backgroundColor};
   color: ${(p) => p.theme.internalColor};
   display: inline-flex;
@@ -23,13 +23,16 @@ interface BadgeProps {
   cSize?: ComponentSize;
   style?: React.CSSProperties;
   children?: React.ReactNode;
+  isPill?: boolean;
 }
 
 function getBadgeTheme(p: BadgeProps, baseTheme: ISimaraThemeData) {
-  const filterFactor = baseTheme.Colors.background === "#ffffff" ? "100%" : "200%";
+  const filterFactor =
+    baseTheme.Colors.background === "#ffffff" ? "100%" : "200%";
   const filter = "brightness(" + filterFactor + ")";
   let fontSize = baseTheme.MediumHeight / 3;
   let theme = baseTheme.Colors.primary;
+  let borderRadius = fontSize / 4;
   switch (p.cSize) {
     case "small":
       fontSize = baseTheme.SmallHeight / 3;
@@ -52,9 +55,13 @@ function getBadgeTheme(p: BadgeProps, baseTheme: ISimaraThemeData) {
       theme = baseTheme.Colors.grey;
       break;
   }
+  if (p.isPill) {
+    borderRadius = fontSize;
+  }
   return {
     filter,
     fontSize,
+    borderRadius,
     backgroundColor: theme.dil90,
     internalColor: theme.dil0,
   };
