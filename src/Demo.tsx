@@ -108,9 +108,13 @@ function Demo() {
               <option value="female">Professor</option>
             </Select>
             <Button
-              style={{ width: "100%", marginLeft: "10px" }}
-              appearance="secondary"
-              intent="success"
+              style={{
+                marginLeft: "10px",
+              }}
+              cSize="small"
+              isShrunken
+              appearance="primary"
+              intent="danger"
               iconBefore={IconPhotograph}
               onClick={() => {
                 setModal(true);

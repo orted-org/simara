@@ -10,7 +10,8 @@ const SButton = styled.button`
   color: ${(p) => p.theme.internalColor};
   height: ${(p) => p.theme.height + "px"};
   min-width: ${(p) => p.theme.height + 1.5 + "px"};
-  padding: 0px ${(p) => p.theme.height * 0.5 + "px"};
+  padding: ${(p) =>
+    p.theme.height * 0.05 + "px " + p.theme.height * 0.2 + "px"};
   font-size: ${(p) => p.theme.height / 3 + "px"};
   font-weight: 500;
   border-radius: ${(p) => p.theme.borderRadius + "px"};
@@ -42,6 +43,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean;
   children?: React.ReactNode;
   isIconButton?: boolean;
+  isShrunken?: boolean;
 }
 
 function getButtonTheme(p: ButtonProps, baseTheme: ISimaraThemeData): any {
@@ -107,7 +109,12 @@ export default function Button(props: ButtonProps) {
       disabled={props.isDisabled}
       onClick={props.onClick}
       {...props}
-      style={{ ...props.style, padding: props.isIconButton ? 0 : "" }}
+      style={{
+        padding: props.isIconButton ? 0 : "",
+        height: props.isShrunken ? "fit-content" : "",
+        width: props.isShrunken ? "fit-content" : "",
+        ...props.style,
+      }}
     >
       {props.isLoading ? (
         <Spinner color={buttonTheme.internalColor} cSize={props.cSize} />

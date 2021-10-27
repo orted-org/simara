@@ -3,14 +3,14 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import ToastManager from "./Components/ToastManager";
 import { SimaraThemeContext } from "./Global/Context";
-import { SimaraDarkTheme } from "./Global/ThemeData";
+import { SimaraDarkTheme, SimaraLightTheme } from "./Global/ThemeData";
 
 ReactDOM.render(
   <React.StrictMode>
     <SimaraThemeContext.Provider
       value={{
         themeData: {
-          ...SimaraDarkTheme,
+          ...SimaraLightTheme,
           BorderRadius: 5,
           SmallHeight: 34,
           MediumHeight: 36,
