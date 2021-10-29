@@ -156,7 +156,7 @@ function Demo() {
             iconAfter={IconChevronRight}
             onClick={() => {
               toast({
-                intent: "success",
+                intent: "danger",
                 title: "Account Created",
                 duration: 5000,
                 message: "Your account has been successfully created.",
