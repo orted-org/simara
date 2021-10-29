@@ -116,6 +116,11 @@ function Demo() {
               intent="danger"
               iconBefore={IconPhotograph}
               onClick={() => {
+                toast({
+                  title: "Account Created",
+                  duration: 10000,
+                  message: "Your account has been successfully created.",
+                });
                 setModal(true);
               }}
             >
@@ -136,6 +141,12 @@ function Demo() {
             <Switch
               isOn={noti}
               onTap={() => {
+                toast({
+                  intent: "success",
+                  title: "Account Created",
+                  duration: 10000,
+                  message: "Your account has been successfully created.",
+                });
                 setNoti((ps) => !ps);
               }}
             />
@@ -145,6 +156,12 @@ function Demo() {
             isChecked={terms}
             onTap={() => {
               setTerms((ps) => !ps);
+              toast({
+                intent: "warning",
+                title: "Account Created",
+                duration: 10000,
+                message: "Your account has been successfully created.",
+              });
             }}
             cSize="small"
             label="By logging in you accept our Privacy Policy and Terms of Service."
@@ -156,12 +173,11 @@ function Demo() {
             iconAfter={IconChevronRight}
             onClick={() => {
               toast({
-                intent: "success",
+                intent: "danger",
                 title: "Account Created",
-                duration: 5000,
+                duration: 10000,
                 message: "Your account has been successfully created.",
               });
-              setLoading((ps) => !ps);
             }}
             cSize="large"
             style={{ width: "100%", marginTop: "10px" }}
