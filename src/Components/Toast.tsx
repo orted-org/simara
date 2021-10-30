@@ -30,7 +30,8 @@ const STC = styled.div`
   z-index: 98;
   transition: all 0.3s;
   &:hover {
-    box-shadow: none;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
+      ${(p) => p.theme.intentColor} 0px 0px 0px 1px inset;
   }
   @media (max-width: 480px) {
     box-shadow: ${(p) => p.theme.boxShadow.smallScreen};
@@ -41,10 +42,7 @@ const STC = styled.div`
 function getToastTheme(p: ToastProps, baseTheme: ISimaraThemeData) {
   let intentColor = baseTheme.Colors.primary.dil0;
   let icon = IconInformationCircle;
-  let boxShadow = {
-    largeScreen: "2px 2px 5px 2px #00000047",
-    smallScreen: "0px 2px 5px 2px #00000047",
-  };
+
   switch (p.intent) {
     case "danger":
       intentColor = baseTheme.Colors.danger.dil0;
@@ -64,7 +62,10 @@ function getToastTheme(p: ToastProps, baseTheme: ISimaraThemeData) {
     borderRadius: baseTheme.BorderRadius,
     icon,
     background: baseTheme.Colors.secBackground,
-    boxShadow,
+    boxShadow: {
+      largeScreen: "2px 2px 5px 2px #00000047",
+      smallScreen: "0px 2px 5px 2px #00000047",
+    },
   };
 }
 
