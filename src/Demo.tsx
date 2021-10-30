@@ -188,7 +188,13 @@ function Demo() {
                 intent: "warning",
                 title: "Account Created",
                 duration: 10000,
-                message: "Your account has been successfully created.",
+                message: (
+                  <p>
+                    Please visit{" "}
+                    <a href="https://www.something.com/setting">Setting</a> to
+                    change you profile picture.
+                  </p>
+                ),
               });
             }}
             cSize="large"
