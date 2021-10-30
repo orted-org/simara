@@ -9,7 +9,7 @@ ReactDOM.render(
   <React.StrictMode>
     <SimaraThemeContext.Provider
       value={{
-        themeData: SimaraDarkTheme,
+        themeData: SimaraLightTheme,
       }}
     >
       <ToastManager>

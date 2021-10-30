@@ -5,7 +5,7 @@ import { ISimaraThemeData } from "../Global/Interface";
 import {
   IconCheckCircle,
   IconExclamationCircleFilled,
-  IconExclamationTriangle,
+  IconExclamation,
   IconInformationCircle,
   IconX,
 } from "./Icons";
@@ -29,7 +29,7 @@ const STC = styled.div`
   box-shadow: ${(p) => p.theme.boxShadow.largeScreen};
   z-index: 98;
   transition: all 0.3s;
-  &:hover{
+  &:hover {
     box-shadow: none;
   }
   @media (max-width: 480px) {
@@ -41,7 +41,10 @@ const STC = styled.div`
 function getToastTheme(p: ToastProps, baseTheme: ISimaraThemeData) {
   let intentColor = baseTheme.Colors.primary.dil0;
   let icon = IconInformationCircle;
-  let boxShadow = {largeScreen: "2px 2px 5px 2px #00000047", smallScreen: "0px 2px 5px 2px #00000047"};
+  let boxShadow = {
+    largeScreen: "2px 2px 5px 2px #00000047",
+    smallScreen: "0px 2px 5px 2px #00000047",
+  };
   switch (p.intent) {
     case "danger":
       intentColor = baseTheme.Colors.danger.dil0;
@@ -53,7 +56,7 @@ function getToastTheme(p: ToastProps, baseTheme: ISimaraThemeData) {
       break;
     case "warning":
       intentColor = baseTheme.Colors.warning.dil0;
-      icon = IconExclamationTriangle;
+      icon = IconExclamation;
       break;
   }
   return {
