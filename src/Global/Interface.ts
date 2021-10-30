@@ -1,3 +1,5 @@
+import { ReactNode, CSSProperties } from "react";
+
 interface IColor {
   dil0: string;
   dil30: string;
@@ -7,6 +9,7 @@ interface IColor {
 interface ISimaraThemeData {
   Colors: {
     background: string;
+    secBackground: string;
     primary: IColor;
     success: IColor;
     danger: IColor;
@@ -27,9 +30,9 @@ interface ISimaraContext {
 interface ISimaraToast {
   intent?: "info" | "danger" | "success" | "warning";
   title?: string;
-  message: string;
+  message: ReactNode;
   customIcon?: JSX.Element;
   duration?: number;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 }
 export type { IColor, ISimaraThemeData, ISimaraContext, ISimaraToast };

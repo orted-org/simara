@@ -9,16 +9,10 @@ ReactDOM.render(
   <React.StrictMode>
     <SimaraThemeContext.Provider
       value={{
-        themeData: {
-          ...SimaraLightTheme,
-          BorderRadius: 5,
-          SmallHeight: 34,
-          MediumHeight: 36,
-          LargeHeight: 38,
-        },
+        themeData: SimaraLightTheme,
       }}
     >
-      <ToastManager>
+      <ToastManager latestFirst>
         <App />
       </ToastManager>
     </SimaraThemeContext.Provider>
