@@ -12,7 +12,7 @@ ReactDOM.render(
         themeData: SimaraLightTheme,
       }}
     >
-      <ToastManager>
+      <ToastManager latestFirst>
         <App />
       </ToastManager>
     </SimaraThemeContext.Provider>

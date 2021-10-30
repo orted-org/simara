@@ -21,6 +21,7 @@ const STM = styled.section`
 `;
 interface STMProps {
   children?: React.ReactNode;
+  latestFirst?: boolean;
 }
 interface ISimaraToastExtended extends ISimaraToast {
   id: string;
@@ -29,11 +30,14 @@ function ToastManager(props: STMProps) {
   const [toasts, setToasts] = useState<ISimaraToastExtended[]>([]);
   function showToast(data: ISimaraToast) {
     setToasts((prevState) => {
-      const temp: ISimaraToastExtended[] = [];
+      let temp: ISimaraToastExtended[] = [];
       for (let i = 0; i < prevState.length; i++) {
         temp.push(prevState[i]);
       }
       temp.push({ ...data, id: "toast" + globalCounter++ });
+      if (props.latestFirst) {
+        temp = temp.reverse();
+      }
       return temp;
     });
   }
