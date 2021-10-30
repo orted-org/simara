@@ -178,6 +178,18 @@ function Demo() {
                 duration: 10000,
                 message: "Your account has been successfully created.",
               });
+              toast({
+                intent: "success",
+                title: "Account Created",
+                duration: 10000,
+                message: "Your account has been successfully created.",
+              });
+              toast({
+                intent: "warning",
+                title: "Account Created",
+                duration: 10000,
+                message: "Your account has been successfully created.",
+              });
             }}
             cSize="large"
             style={{ width: "100%", marginTop: "10px" }}

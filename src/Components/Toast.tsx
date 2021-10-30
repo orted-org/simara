@@ -72,7 +72,7 @@ function getToastTheme(p: ToastProps, baseTheme: ISimaraThemeData) {
 interface ToastProps {
   intent?: "info" | "danger" | "success" | "warning";
   title?: string;
-  message: string;
+  message: React.ReactNode;
   customIcon?: JSX.Element;
   duration?: number;
   onClose: () => void;
