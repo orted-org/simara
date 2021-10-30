@@ -3,9 +3,9 @@ import styled from "styled-components";
 import { useSimara } from "../Global/Context";
 import { ISimaraThemeData } from "../Global/Interface";
 import {
-  IconCheckCircle,
+  IconCheckCircleFilled,
   IconExclamationCircleFilled,
-  IconExclamation,
+  IconExclamationFilled,
   IconInformationCircle,
   IconX,
 } from "./Icons";
@@ -50,11 +50,11 @@ function getToastTheme(p: ToastProps, baseTheme: ISimaraThemeData) {
       break;
     case "success":
       intentColor = baseTheme.Colors.success.dil0;
-      icon = IconCheckCircle;
+      icon = IconCheckCircleFilled;
       break;
     case "warning":
       intentColor = baseTheme.Colors.warning.dil0;
-      icon = IconExclamation;
+      icon = IconExclamationFilled;
       break;
   }
   return {
