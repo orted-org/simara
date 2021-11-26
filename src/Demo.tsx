@@ -6,6 +6,7 @@ import { IconChevronRight, IconMail, IconPhotograph } from "./Components/Icons";
 import Modal from "./Components/Modal";
 import RadioGroup from "./Components/RadioGroup";
 import Select from "./Components/Select";
+import Slider from "./Components/Slider";
 import Switch from "./Components/Switch";
 import TextArea from "./Components/TextArea";
 import TextField from "./Components/TextField";
@@ -151,6 +152,11 @@ function Demo() {
               }}
             />
           </div>
+          <Slider
+            style={{ marginTop: "10px" }}
+            cSize="small"
+            indicateComplete
+          />
           <Checkbox
             style={{ marginTop: "60px" }}
             isChecked={terms}
