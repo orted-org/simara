@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, useMemo, useState } from "react";
+import { InputHTMLAttributes, useMemo } from "react";
 import styled from "styled-components";
 import { useSimara } from "../Global/Context";
 import { ISimaraThemeData } from "../Global/Interface";
@@ -10,7 +10,7 @@ const SSlider = styled.input`
   appearance: none;
   outline: none;
   width: 100%;
-  height: ${(p) => p.theme.height + "px"};
+  height: ${(p) => p.theme.height * 0.6 + "px"};
   border-radius: ${(p) => p.theme.height + "px"};
   cursor: pointer;
   &::-webkit-slider-thumb {
@@ -20,7 +20,10 @@ const SSlider = styled.input`
     height: ${(p) => p.theme.height * 2 + "px"};
     width: ${(p) => p.theme.height * 2 + "px"};
     border-radius: ${(p) => p.theme.height + "px"};
-    background: ${(p) => p.theme.thumbColor};
+    /* background: ${(p) => p.theme.thumbColor}; */
+    background: white;
+    border: ${(p) => p.theme.height / 1.5 + "px"} solid
+      ${(p) => p.theme.thumbColor};
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
   }
 `;
@@ -45,10 +48,10 @@ function getSliderTheme(p: SliderProps, baseTheme: ISimaraThemeData) {
   }
   return {
     height,
-    backgroundColor: p.indicateComplete
+    backgroundColor: baseTheme.Colors.grey.dil60,
+    completedColor: !p.indicateComplete
       ? baseTheme.Colors.grey.dil60
       : theme.dil90,
-    completedColor: theme.dil90,
     thumbColor: theme.dil0,
   };
 }
@@ -63,18 +66,15 @@ function Slider(props: SliderProps) {
     () => getSliderTheme(props, simaraTheme),
     [props, simaraTheme]
   );
-  const [value, setValue] = useState((props.value || 50) + "%");
   return (
     <SSlider
       theme={badgeTheme}
       type="range"
-      onChange={(e) => {
-        props.onChange && props.onChange(e);
-        setValue(e.target.value + "%");
-      }}
       {...props}
       style={{
-        background: `linear-gradient(90deg, ${badgeTheme.completedColor} ${value}, ${badgeTheme.backgroundColor} ${value})`,
+        background: `linear-gradient(90deg, ${badgeTheme.completedColor} ${
+          props.value + "%"
+        }, ${badgeTheme.backgroundColor} ${props.value + "%"})`,
         ...props.style,
       }}
     />
