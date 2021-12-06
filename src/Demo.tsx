@@ -6,10 +6,12 @@ import { IconChevronRight, IconMail, IconPhotograph } from "./Components/Icons";
 import Modal from "./Components/Modal";
 import RadioGroup from "./Components/RadioGroup";
 import Select from "./Components/Select";
+import Slider from "./Components/Slider";
 import Switch from "./Components/Switch";
 import TextArea from "./Components/TextArea";
 import TextField from "./Components/TextField";
 import { useSimara, useSimaraToast } from "./Global/Context";
+import { ComponentIntent } from "./Global/Type";
 
 function Demo() {
   const [terms, setTerms] = useState(false);
@@ -17,6 +19,8 @@ function Demo() {
   const [noti, setNoti] = useState(false);
   const [modal, setModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [intent, setIntent] = useState<ComponentIntent>("success");
+  const [slider, setSlider] = useState(50);
   const theme = useSimara();
   useEffect(() => {}, []);
   const toast = useSimaraToast();
@@ -151,6 +155,24 @@ function Demo() {
               }}
             />
           </div>
+          <Slider
+            style={{ marginTop: "10px" }}
+            indicateComplete={true}
+            intent={intent}
+            value={slider}
+            onChange={(e) => {
+              const val = parseInt(e.target.value);
+              if (isNaN(val)) {
+                setIntent("normal");
+                setSlider(0);
+                return;
+              }
+              if (val < 40) setIntent("normal");
+              else if (val < 70) setIntent("success");
+              else setIntent("danger");
+              setSlider(val);
+            }}
+          />
           <Checkbox
             style={{ marginTop: "60px" }}
             isChecked={terms}
