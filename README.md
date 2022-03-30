@@ -1,4 +1,4 @@
-<h2 align="center">Simara</h2>
+<h2 align="center">SimaraUI</h2>
 <p align="center">
 Simara is yet another React UI components library that powers most of ORTED's web UIs. The library has been built considering package size, simplicity and dashboard kind of use case.
 </p>
@@ -21,10 +21,9 @@ Simara is yet another React UI components library that powers most of ORTED's we
 - Textfield
 - Toast
 
-### Contributing
+### Release Notice
 
-Contributions are always welcome.
-Please feel free to make a PR or an issue.
+The library is still lacking few components, and hence has not been published on NPM.
 
 ### License
 
